@@ -3,6 +3,7 @@
 namespace RyanChandler\FilamentNavigation\Models;
 
 use App\Models\Channel;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,16 +33,11 @@ class Navigation extends Model
     protected static function booted(): void
     {
         if(config('filament-navigation.teams')){
-            static::addGlobalScope('channel', function (Builder $query) {
+            static::addGlobalScope('team', function (Builder $query) {
                 if (auth()->check()) {
-                    $query->whereBelongsTo(auth()->user()->channels);
+                    $query->where(config('filament-navigation.teamsId'), Filament::getTenant()->getAttribute('id'));
                 }
             });
         }
-    }
-
-    public function channel(): BelongsTo
-    {
-        return $this->belongsTo(Channel::class);
     }
 }
