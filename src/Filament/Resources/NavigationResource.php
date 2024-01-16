@@ -37,7 +37,6 @@ class NavigationResource extends Resource
                 Section::make('')->schema([
                     TextInput::make('name')
                         ->label(__('filament-navigation::filament-navigation.attributes.name'))
-                        ->helperText('bacalhau: '.config('filament-navigation.teamsClass'))
                         ->reactive()
                         ->debounce()
                         ->afterStateUpdated(function (?string $state, Set $set) {
