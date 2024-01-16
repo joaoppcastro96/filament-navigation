@@ -67,7 +67,7 @@ class FilamentNavigation implements Plugin
 
     public function boot(Panel $panel): void
     {
-        //
+
     }
 
     public static function make(): static
@@ -97,6 +97,12 @@ class FilamentNavigation implements Plugin
 
     public function getItemTypes(): array
     {
+
+        $options = config('filament-navigation.options');
+        $optionsInstance = new $options();
+        $this->itemTypes = $optionsInstance->itemTypes();
+        $this->extraFields = $optionsInstance->extraFields();
+        
         return array_merge(
             [
                 'external-link' => [

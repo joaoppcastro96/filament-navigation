@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('handle')->unique();
-            $table->json('items')->nullable();
+            $table->jsonb('items')->nullable();
             $table->timestamps();
         });
     }

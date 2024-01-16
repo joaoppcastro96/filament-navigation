@@ -19,6 +19,8 @@ trait HandlesNavigationBuilder
 
     public $mountedItemData = [];
 
+    public $mountedActionData = [];
+
     public $mountedChildTarget;
 
     public function sortNavigation(string $targetStatePath, array $targetItemsStatePaths)

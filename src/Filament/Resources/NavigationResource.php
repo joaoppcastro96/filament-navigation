@@ -22,15 +22,8 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-bars-3';
 
     protected static bool $showTimestamps = true;
-
-    private static ?string $workNavigationLabel = null;
-
-    private static ?string $workPluralLabel = null;
-
-    private static ?string $workLabel = null;
 
     public static function disableTimestamps(bool $condition = true): void
     {
@@ -44,6 +37,7 @@ class NavigationResource extends Resource
                 Section::make('')->schema([
                     TextInput::make('name')
                         ->label(__('filament-navigation::filament-navigation.attributes.name'))
+                        ->helperText('bacalhau: '.config('filament-navigation.teamsClass'))
                         ->reactive()
                         ->debounce()
                         ->afterStateUpdated(function (?string $state, Set $set) {
@@ -88,35 +82,53 @@ class NavigationResource extends Resource
             ])
             ->columns(12);
     }
+    public static function navigationIcon(?string $string): void 
+    {
+        self::$navigationIcon = config('filament-navigation.NavigationIcon');
+    }
 
+    public static function navigationGroup(?string $string): void
+    {
+        self::$navigationGroup = config('filament-navigation.navigationGroup');
+    }
     public static function navigationLabel(?string $string): void
     {
-        self::$workNavigationLabel = $string;
+        self::$workNavigationLabel = config('filament-navigation.NavigationLabel');
     }
 
     public static function pluralLabel(?string $string): void
     {
-        self::$workPluralLabel = $string;
+        self::$workPluralLabel = config('filament-navigation.NavigationLabel');
     }
 
     public static function label(?string $string): void
     {
-        self::$workLabel = $string;
+        self::$workLabel = config('filament-navigation.NavigationLabel');
+    }
+
+    public static function getNavigationIcon(): string
+    {
+        return config('filament-navigation.NavigationIcon', parent::getNavigationIcon());
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return config('filament-navigation.NavigationGroup', parent::getNavigationGroup());
     }
 
     public static function getNavigationLabel(): string
     {
-        return self::$workNavigationLabel ?? parent::getNavigationLabel();
+        return config('filament-navigation.NavigationLabel', parent::getNavigationLabel());
     }
 
     public static function getModelLabel(): string
     {
-        return self::$workLabel ?? parent::getModelLabel();
+        return config('filament-navigation.ModelLabel', parent::getModelLabel());
     }
 
     public static function getPluralModelLabel(): string
     {
-        return self::$workPluralLabel ?? parent::getPluralModelLabel();
+        return config('filament-navigation.PluralModelLabel', parent::getPluralModelLabel());
     }
 
     public static function table(Table $table): Table

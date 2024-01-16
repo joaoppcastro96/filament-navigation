@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('navigations', function (Blueprint $table) {
-            $table->longText('items')->change();
+            if(config('filament-navigation.mysql57')){
+                $table->longText('items')->change();
+            }
         });
     }
 
@@ -25,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('navigations');
+        if(config('filament-navigation.mysql57')){
+            Schema::dropIfExists('navigations');
+        }
     }
 };
