@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('navigations', function (Blueprint $table) {
-            if(config('filament-navigation.teams')){
-                if(config('filament-navigation.teamsId') == null || config('filament-navigation.teamsClass') == null){
-                    throw new Exception("Error: Teams id and class in config must be set", 1);
+            if (config('filament-navigation.teams')) {
+                if (config('filament-navigation.teamsId') == null || config('filament-navigation.teamsClass') == null) {
+                    throw new Exception('Error: Teams id and class in config must be set', 1);
                 }
 
                 $table->bigInteger(config('filament-navigation.teamsId'))
                     ->default(1);
-                
+
                 $table->index(config('filament-navigation.teamsId'), 'navigation_team_foreign_key_index');
                 $table->dropUnique('navigations_handle_unique');
                 $table->unique(['handle', config('filament-navigation.teamsId')], 'navigations_handle_teams_id_unique');
@@ -36,7 +36,7 @@ return new class extends Migration
      */
     public function down()
     {
-        if(config('filament-navigation.teams')){
+        if (config('filament-navigation.teams')) {
             Schema::table('navigations', function (Blueprint $table) {
                 $table->dropUnique('navigation_team_foreign_key_index');
                 $table->dropUnique('navigations_handle_teams_id_unique');

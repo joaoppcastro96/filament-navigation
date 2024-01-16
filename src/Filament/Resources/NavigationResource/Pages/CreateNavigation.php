@@ -17,9 +17,10 @@ class CreateNavigation extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if(config('filament-navigation.teams')){
+        if (config('filament-navigation.teams')) {
             $data[config('filament-navigation.teamsId')] = \Filament\Facades\Filament::getTenant()->getAttribute('id');
-        }  
+        }
+
         return $data;
     }
 }

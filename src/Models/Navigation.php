@@ -2,12 +2,10 @@
 
 namespace RyanChandler\FilamentNavigation\Models;
 
-use App\Models\Channel;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string $handle
@@ -32,7 +30,7 @@ class Navigation extends Model
 
     protected static function booted(): void
     {
-        if(config('filament-navigation.teams')){
+        if (config('filament-navigation.teams')) {
             static::addGlobalScope('team', function (Builder $query) {
                 if (auth()->check()) {
                     $query->where(config('filament-navigation.teamsId'), Filament::getTenant()->getAttribute('id'));

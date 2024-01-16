@@ -1,4 +1,5 @@
 <?php
+
 // config for RyanChandler/FilamentNavigation
 return [
     // Default Model and Resource

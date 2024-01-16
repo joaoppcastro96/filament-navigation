@@ -132,14 +132,14 @@ trait HandlesNavigationBuilder
                         $this->mountedItem = null;
                         $this->mountedItemData = [];
                     } elseif ($this->mountedChildTarget) {
-                        $children = data_get($this, $this->mountedChildTarget . '.children', []);
+                        $children = data_get($this, $this->mountedChildTarget.'.children', []);
 
                         $children[(string) Str::uuid()] = [
                             ...$data,
                             ...['children' => []],
                         ];
 
-                        data_set($this, $this->mountedChildTarget . '.children', $children);
+                        data_set($this, $this->mountedChildTarget.'.children', $children);
 
                         $this->mountedChildTarget = null;
                     } else {

@@ -19,14 +19,14 @@ class FilamentNavigation implements Plugin
 
     protected array $itemTypes = [];
 
-    protected array | Closure $extraFields = [];
+    protected array|Closure $extraFields = [];
 
     public function getId(): string
     {
         return 'navigation';
     }
 
-    /** @param class-string<\Filament\Resources\Resource> $resource */
+    /** @param  class-string<\Filament\Resources\Resource>  $resource */
     public function usingResource(string $resource): static
     {
         $this->resource = $resource;
@@ -34,7 +34,7 @@ class FilamentNavigation implements Plugin
         return $this;
     }
 
-    /** @param class-string<\Illuminate\Database\Eloquent\Model> $model */
+    /** @param  class-string<\Illuminate\Database\Eloquent\Model>  $model */
     public function usingModel(string $model): static
     {
         $this->model = $model;
@@ -42,7 +42,7 @@ class FilamentNavigation implements Plugin
         return $this;
     }
 
-    public function itemType(string $name, array | Closure $fields, ?string $slug = null): static
+    public function itemType(string $name, array|Closure $fields, ?string $slug = null): static
     {
         $this->itemTypes[$slug ?? Str::slug($name)] = [
             'name' => $name,
@@ -52,7 +52,7 @@ class FilamentNavigation implements Plugin
         return $this;
     }
 
-    public function withExtraFields(array | Closure $schema): static
+    public function withExtraFields(array|Closure $schema): static
     {
         $this->extraFields = $schema;
 
@@ -90,7 +90,7 @@ class FilamentNavigation implements Plugin
         return $this->resource;
     }
 
-    public function getExtraFields(): array | Closure
+    public function getExtraFields(): array|Closure
     {
         return $this->extraFields;
     }
@@ -102,7 +102,7 @@ class FilamentNavigation implements Plugin
         $optionsInstance = new $options();
         $this->itemTypes = $optionsInstance->itemTypes();
         $this->extraFields = $optionsInstance->extraFields();
-        
+
         return array_merge(
             [
                 'external-link' => [

@@ -2,8 +2,8 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Fields;
 
-class Options {
-
+class Options
+{
     // Custom Item Types
     // Example:
     /*
@@ -17,12 +17,12 @@ class Options {
     ],
     */
 
-    public function itemTypes(): array {
+    public function itemTypes(): array
+    {
         return [];
     }
 
-
-        // Extra Fields
+    // Extra Fields
     // Example
     /*
     'extraFields' => [
@@ -46,7 +46,8 @@ class Options {
         ]
     ],
     */
-    public function extraFields(): array {
+    public function extraFields(): array
+    {
         return [];
     }
 }

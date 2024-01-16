@@ -22,7 +22,6 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
 {
-
     protected static bool $showTimestamps = true;
 
     public static function disableTimestamps(bool $condition = true): void
@@ -81,7 +80,8 @@ class NavigationResource extends Resource
             ])
             ->columns(12);
     }
-    public static function navigationIcon(?string $string): void 
+
+    public static function navigationIcon(?string $string): void
     {
         self::$navigationIcon = config('filament-navigation.NavigationIcon');
     }
@@ -90,6 +90,7 @@ class NavigationResource extends Resource
     {
         self::$navigationGroup = config('filament-navigation.navigationGroup');
     }
+
     public static function navigationLabel(?string $string): void
     {
         self::$workNavigationLabel = config('filament-navigation.NavigationLabel');
